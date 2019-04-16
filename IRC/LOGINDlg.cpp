@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "IRC.h"
 #include "LOGINDlg.h"
+#include "CHATDlg.h"
 #include "afxdialogex.h"
 
 
@@ -40,14 +41,29 @@ END_MESSAGE_MAP()
 
 void CLOGINDlg::OnBnClickedGetin()
 {
+	CCHATDlg newChatDlg;
+	CString strResponse;
+	bool bFlag;
 	// Get what user inputs
 	CString strUsername, strUsercode;
 	GetDlgItemText(IDC_USERNAME, strUsername);
 	GetDlgItemText(IDC_USERCODE, strUsercode);
+
+	//strResponse = "OK";
+	//MessageBox(strUsername);
+	//MessageBox(strUsercode);
 
 	//Compare with user's data
 	/*
 	*
 	*
 	*/
+	bFlag = true;//Debug Value
+	if (bFlag)
+	{
+		strResponse = "Welcome back!  User-";
+		strResponse = strResponse + strUsername;
+		MessageBox(strResponse);
+		newChatDlg.DoModal();
+	}
 }

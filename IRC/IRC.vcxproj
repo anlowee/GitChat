@@ -183,6 +183,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CHATDlg.h" />
     <ClInclude Include="IRC.h" />
     <ClInclude Include="IRCDlg.h" />
     <ClInclude Include="LOGINDlg.h" />
@@ -192,6 +193,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CHATDlg.cpp" />
     <ClCompile Include="IRC.cpp" />
     <ClCompile Include="IRCDlg.cpp" />
     <ClCompile Include="LOGINDlg.cpp" />
