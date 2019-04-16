@@ -53,9 +53,6 @@
     <ClCompile Include="LOGINDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="REGISTERDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CHATDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

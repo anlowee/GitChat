@@ -4,9 +4,8 @@
 #include "stdafx.h"
 #include "IRC.h"
 #include "CHATDlg.h"
+#include "LOGINDlg.h"
 #include "afxdialogex.h"
-
-
 // CCHATDlg dialog
 
 IMPLEMENT_DYNAMIC(CCHATDlg, CDialogEx)
@@ -48,8 +47,14 @@ void CCHATDlg::OnBnClickedSend()
 	strEnterBack = "\r\n";
 	GetDlgItemText(IDC_MESSAGEEDIT, strMessageInput);
 	ctCurrentTime.CTime::GetCurrentTime();
+	UpdateData(FALSE);
 	strCurrentTime = ctCurrentTime.Format("%Y-%m-%d %H:%M:%S");
-	strMessageOutput = strMessageOutput + strCurrentTime + strEnterBack + strMessageInput + strEnterBack;
+	/*
+	*Before time, there should be Username added in strMessageOutput
+	*/
+	strMessageOutput = strMessageOutput + strCurrentTime + strEnterBack + strMessageInput;
+	strMessageOutput = strMessageOutput + strEnterBack + strEnterBack;
 
 	SetDlgItemText(IDC_MESSAGELOG, strMessageOutput);
 }
+

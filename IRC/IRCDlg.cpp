@@ -6,7 +6,6 @@
 #include "IRC.h"
 #include "IRCDlg.h"
 #include "LOGINDlg.h"
-#include "REGISTERDlg.h"
 #include "afxdialogex.h"
 
 #ifdef _DEBUG
@@ -67,7 +66,6 @@ BEGIN_MESSAGE_MAP(CIRCDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_LOG, &CIRCDlg::OnBnClickedLog)
-	ON_BN_CLICKED(IDC_REGISTER, &CIRCDlg::OnBnClickedRegister)
 END_MESSAGE_MAP()
 
 
@@ -163,12 +161,4 @@ void CIRCDlg::OnBnClickedLog()
 	//Create Login Dialog
 	CLOGINDlg newLoginDlg;
 	newLoginDlg.DoModal();
-}
-
-
-void CIRCDlg::OnBnClickedRegister()
-{
-	// Create Register Dialog
-	CREGISTERDlg newRegisterDlg;
-	newRegisterDlg.DoModal();
 }

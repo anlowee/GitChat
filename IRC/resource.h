@@ -8,30 +8,27 @@
 #define IDD_IRC_DIALOG                  102
 #define IDR_MAINFRAME                   128
 #define IDD_LOGIN                       132
-#define IDD_REGISTERUP                  134
 #define IDD_CHAT                        136
 #define IDC_LOG                         1001
 #define IDC_REGISTER                    1002
 #define IDC_USERNAME                    1003
 #define IDC_USERCODE                    1004
 #define IDC_GETIN                       1005
-#define IDC_NEWUSERNAME                 1006
-#define IDC_NEWUSERCODE                 1007
-#define IDC_NEWUSERCODE2                1008
+#define IDC_NICKNAME                    1006
+#define IDC_SERVERADDRESS               1007
+#define IDC_SERVERPORT                  1008
 #define IDC_BUTTON1                     1009
-#define IDC_REGISTERNOW                 1009
 #define IDC_SEND                        1009
 #define IDC_MESSAGELOG                  1010
-#define IDC_EDIT2                       1011
 #define IDC_MESSAGEEDIT                 1011
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        138
+#define _APS_NEXT_RESOURCE_VALUE        139
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1012
+#define _APS_NEXT_CONTROL_VALUE         1013
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

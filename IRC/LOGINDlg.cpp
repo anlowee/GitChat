@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "IRC.h"
+#include "Resource.h"
 #include "LOGINDlg.h"
 #include "CHATDlg.h"
 #include "afxdialogex.h"
@@ -42,17 +43,20 @@ END_MESSAGE_MAP()
 void CLOGINDlg::OnBnClickedGetin()
 {
 	CCHATDlg newChatDlg;
-	CString strResponse;
-	bool bFlag;
+	CString strResponse;//Use to Response
+	bool bFlag;//Use to judge
+
 	// Get what user inputs
-	CString strUsername, strUsercode;
+	CString strUsername, strNickname,strUsercode, strServeraddress, strServerport;
+	WORD wServerport;
+
 	GetDlgItemText(IDC_USERNAME, strUsername);
+	GetDlgItemText(IDC_NICKNAME, strNickname);
 	GetDlgItemText(IDC_USERCODE, strUsercode);
-
-	//strResponse = "OK";
-	//MessageBox(strUsername);
-	//MessageBox(strUsercode);
-
+	GetDlgItemText(IDC_SERVERADDRESS, strServeraddress);
+	GetDlgItemText(IDC_SERVERPORT, strServerport);
+	wServerport = _wtoi(strServerport);
+	
 	//Compare with user's data
 	/*
 	*
