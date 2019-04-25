@@ -5,6 +5,7 @@
 #include "IRC.h"
 #include "CHATDlg.h"
 #include "LOGINDlg.h"
+#include "MyGlobalData.h"
 #include "afxdialogex.h"
 // CCHATDlg dialog
 
@@ -39,22 +40,50 @@ END_MESSAGE_MAP()
 
 void CCHATDlg::OnBnClickedSend()
 {
-	static CString strMessageOutput = NULL;
-	CString strMessageInput, strCurrentTime;
-	CString strEnterBack;
-	CTime ctCurrentTime;
+	CString strMessageInput;
+	CString strUsername;
 
-	strEnterBack = "\r\n";
+	strUsername = MyGlobalData::g_strUsername;
 	GetDlgItemText(IDC_MESSAGEEDIT, strMessageInput);
-	ctCurrentTime.CTime::GetCurrentTime();
 	UpdateData(FALSE);
-	strCurrentTime = ctCurrentTime.Format("%Y-%m-%d %H:%M:%S");
+
 	/*
 	*Before time, there should be Username added in strMessageOutput
 	*/
-	strMessageOutput = strMessageOutput + strCurrentTime + strEnterBack + strMessageInput;
-	strMessageOutput = strMessageOutput + strEnterBack + strEnterBack;
 
-	SetDlgItemText(IDC_MESSAGELOG, strMessageOutput);
+	strMessageInput = AddRecord(strUsername, strMessageInput);
+
+	IndicateRecord(strMessageInput);
 }
 
+
+// Record process
+
+
+//Using do process the record
+CString CCHATDlg::AddRecord(CString strUsername, CString strMessageInput)
+{
+	// TODO: Add your implementation code here.
+	CString strMessageOutput;
+	CString strEnterBack = _T("\r\n");
+	CTime ctCurrentTime = CTime ::GetCurrentTime();
+	CString strCurrentTime = ctCurrentTime.Format("%Y-%m-%d %H:%M:%S");
+	
+	strMessageOutput = strCurrentTime + " " + strUsername + " says: " + strEnterBack + strMessageInput;
+	strMessageOutput = strMessageOutput + strEnterBack + strEnterBack;
+
+	return strMessageOutput;
+}
+
+
+// Using to indicate new records
+void CCHATDlg::IndicateRecord(CString strMessageInput)
+{
+	// TODO: Add your implementation code here.
+	static CString strMessageOutput = NULL;
+
+	strMessageOutput = strMessageOutput + strMessageInput;
+
+	SetDlgItemText(IDC_MESSAGELOG, strMessageOutput);
+	this->SendDlgItemMessage(IDC_MESSAGELOG, WM_VSCROLL, SB_BOTTOM, 0);
+}

@@ -22,4 +22,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBnClickedSend();
+	CString AddRecord(CString, CString);
+	// Using to indicate new records
+	void IndicateRecord(CString);
 };

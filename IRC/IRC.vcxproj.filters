@@ -33,10 +33,10 @@
     <ClInclude Include="LOGINDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="REGISTERDlg.h">
+    <ClInclude Include="CHATDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CHATDlg.h">
+    <ClInclude Include="MyGlobalData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -54,6 +54,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CHATDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CMyGlobalData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

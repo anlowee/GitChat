@@ -6,6 +6,7 @@
 #include "Resource.h"
 #include "LOGINDlg.h"
 #include "CHATDlg.h"
+#include "MyGlobalData.h"
 #include "afxdialogex.h"
 
 
@@ -51,6 +52,7 @@ void CLOGINDlg::OnBnClickedGetin()
 	WORD wServerport;
 
 	GetDlgItemText(IDC_USERNAME, strUsername);
+	MyGlobalData::g_strUsername = strUsername;
 	GetDlgItemText(IDC_NICKNAME, strNickname);
 	GetDlgItemText(IDC_USERCODE, strUsercode);
 	GetDlgItemText(IDC_SERVERADDRESS, strServeraddress);
