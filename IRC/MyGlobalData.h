@@ -1,4 +1,7 @@
 #pragma once
+
+#include "IRCClient/IRCClient.h"
+
 class MyGlobalData
 {
 public:
@@ -6,5 +9,6 @@ public:
 	~MyGlobalData();
 
 	static CString g_strUsername;
+	static IRCClient aIRCClient;
 };
 

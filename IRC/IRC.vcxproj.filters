@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\IRCClient">
+      <UniqueIdentifier>{a16c5ff7-9247-44f4-8182-1b41b3a53587}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IRC.h">
@@ -39,6 +42,21 @@
     <ClInclude Include="MyGlobalData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="IRCClient\IRCClient.h">
+      <Filter>Source Files\IRCClient</Filter>
+    </ClInclude>
+    <ClInclude Include="IRCClient\IRCHandler.h">
+      <Filter>Source Files\IRCClient</Filter>
+    </ClInclude>
+    <ClInclude Include="IRCClient\IRCSocket.h">
+      <Filter>Source Files\IRCClient</Filter>
+    </ClInclude>
+    <ClInclude Include="IRCClient\Thread.h">
+      <Filter>Source Files\IRCClient</Filter>
+    </ClInclude>
+    <ClInclude Include="IRCClient\stdafx.h">
+      <Filter>Source Files\IRCClient</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IRC.cpp">
@@ -58,6 +76,18 @@
     </ClCompile>
     <ClCompile Include="CMyGlobalData.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IRCClient\IRCClient.cpp">
+      <Filter>Source Files\IRCClient</Filter>
+    </ClCompile>
+    <ClCompile Include="IRCClient\IRCHandler.cpp">
+      <Filter>Source Files\IRCClient</Filter>
+    </ClCompile>
+    <ClCompile Include="IRCClient\IRCSocket.cpp">
+      <Filter>Source Files\IRCClient</Filter>
+    </ClCompile>
+    <ClCompile Include="IRCClient\Thread.cpp">
+      <Filter>Source Files\IRCClient</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
