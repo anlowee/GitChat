@@ -48,7 +48,7 @@ void CLOGINDlg::OnBnClickedGetin()
 	bool bFlag;//Use to judge
 
 	// Get what user inputs
-	CString strUsername, strNickname,strUsercode, strServeraddress, strServerport;
+	CString strUsername, strNickname, strUsercode, strServeraddress, strServerport; USES_CONVERSION;
 	WORD wServerport;
 
 	GetDlgItemText(IDC_USERNAME, strUsername);
@@ -67,9 +67,31 @@ void CLOGINDlg::OnBnClickedGetin()
 	bFlag = true;//Debug Value
 	if (bFlag)
 	{
-		strResponse = "Welcome back!  User-";
-		strResponse = strResponse + strUsername;
-		MessageBox(strResponse);
-		newChatDlg.DoModal();
+		if (MyGlobalData::aIRCClient.InitSocket()) {
+			if (MyGlobalData::aIRCClient.Connect(T2A(strServeraddress), wServerport)) {
+				if (MyGlobalData::aIRCClient.Login(T2A(strNickname), T2A(strUsername), T2A(strUsercode))) {
+					newChatDlg.DoModal();
+
+
+					while (MyGlobalData::aIRCClient.Connected() /*&& running*/) MyGlobalData::aIRCClient.ReceiveData();
+				}
+				else
+				{
+					strResponse = "Fail to login to server.";
+					MessageBox(strResponse);
+				}
+
+				if (MyGlobalData::aIRCClient.Connected()) MyGlobalData::aIRCClient.Disconnect();
+			}
+			else {
+				strResponse = "Fail to connect to server.";
+				MessageBox(strResponse);
+			}
+		} else {
+			strResponse = "Fail to initial the client.";
+			//strResponse = strResponse + strUsername;
+			MessageBox(strResponse);
+			//newChatDlg.DoModal();
+		}
 	}
 }
