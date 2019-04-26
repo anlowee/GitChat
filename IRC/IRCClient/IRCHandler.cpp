@@ -157,7 +157,12 @@ void IRCClient::HandleServerMessage(IRCMessage message)
 
     std::vector<std::string>::const_iterator itr = message.parameters.begin();
     ++itr; // skip the first parameter (our nick)
+
+	std::string MSG="";
+
     for (; itr != message.parameters.end(); ++itr)
-        std::cout << *itr << " ";
-    std::cout << std::endl;
+        MSG+= *itr ;
+    //std::cout << std::endl;
+	MyGlobalData::newChatDlg.AddRecord("Server", MSG);
+	
 }

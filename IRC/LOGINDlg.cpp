@@ -8,7 +8,7 @@
 #include "CHATDlg.h"
 #include "MyGlobalData.h"
 #include "afxdialogex.h"
-
+#include "IRCClient/thread.h"
 
 // CLOGINDlg dialog
 
@@ -36,6 +36,21 @@ void CLOGINDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CLOGINDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_GETIN, &CLOGINDlg::OnBnClickedGetin)
 END_MESSAGE_MAP()
+
+
+ThreadReturn recvThread(void* client)
+{
+	while (MyGlobalData::aIRCClient.Connected() /*&& running*/) MyGlobalData::aIRCClient.ReceiveData();
+
+#ifdef _WIN32
+	_endthread();
+#else
+	pthread_exit(NULL);
+#endif
+}
+
+
+
 
 
 // CLOGINDlg message handlers
@@ -72,9 +87,13 @@ void CLOGINDlg::OnBnClickedGetin()
 		if (MyGlobalData::aIRCClient.InitSocket()) {
 			if (MyGlobalData::aIRCClient.Connect(T2A(strServeraddress), wServerport)) {
 				if (MyGlobalData::aIRCClient.Login(T2A(strNickname), T2A(strUsername), T2A(strUsercode))) {
-					MyGlobalData::newChatDlg.DoModal();
 
-					while (MyGlobalData::aIRCClient.Connected() /*&& running*/) MyGlobalData::aIRCClient.ReceiveData();
+
+
+					Thread thread;
+					thread.Start(&recvThread,nullptr);
+
+					MyGlobalData::newChatDlg.DoModal();
 				}
 				else
 				{

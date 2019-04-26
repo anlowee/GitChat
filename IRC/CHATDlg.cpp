@@ -78,6 +78,7 @@ CString CCHATDlg::AddRecord(CString strUsername, CString strMessageInput)
 std::string CCHATDlg::AddRecord(std::string strUsername, std::string strMessageInput)
 {
 	CString rs = this->AddRecord(CString(strUsername.c_str()), CString(strMessageInput.c_str())); USES_CONVERSION;
+	IndicateRecord(rs);
 	return T2A(rs);
 }
 
