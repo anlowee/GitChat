@@ -17,6 +17,8 @@
 
 #include "IRCHandler.h"
 
+#include "../MyGlobalData.h"
+
 IRCCommandHandler ircCommandTable[NUM_IRC_CMDS] =
 {
     { "PRIVMSG",            &IRCClient::HandlePrivMsg                   },
@@ -55,7 +57,8 @@ void IRCClient::HandleCTCP(IRCMessage message)
     // Remove '\001' from start/end of the string
     text = text.substr(1, text.size() - 2);
 
-    std::cout << "[" + message.prefix.nick << " requested CTCP " << text << "]" << std::endl;
+    //std::cout << "[" + message.prefix.nick << " requested CTCP " << text << "]" << std::endl;
+	MyGlobalData::newChatDlg.AddRecord(message.prefix.nick, text);
 
     if (to == _nick)
     {

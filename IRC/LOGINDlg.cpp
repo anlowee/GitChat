@@ -43,7 +43,9 @@ END_MESSAGE_MAP()
 
 void CLOGINDlg::OnBnClickedGetin()
 {
-	CCHATDlg newChatDlg;
+	//CCHATDlg newChatDlg;
+
+
 	CString strResponse;//Use to Response
 	bool bFlag;//Use to judge
 
@@ -70,8 +72,7 @@ void CLOGINDlg::OnBnClickedGetin()
 		if (MyGlobalData::aIRCClient.InitSocket()) {
 			if (MyGlobalData::aIRCClient.Connect(T2A(strServeraddress), wServerport)) {
 				if (MyGlobalData::aIRCClient.Login(T2A(strNickname), T2A(strUsername), T2A(strUsercode))) {
-					newChatDlg.DoModal();
-
+					MyGlobalData::newChatDlg.DoModal();
 
 					while (MyGlobalData::aIRCClient.Connected() /*&& running*/) MyGlobalData::aIRCClient.ReceiveData();
 				}
