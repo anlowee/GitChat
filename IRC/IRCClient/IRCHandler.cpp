@@ -156,6 +156,7 @@ void IRCClient::HandleUserQuit(IRCMessage message)
 
 void IRCClient::HandleChannelNamesList(IRCMessage message)
 {
+	return;
 	try {
 		std::string channel = message.parameters.at(2);
 		std::string nicks = message.parameters.at(3);

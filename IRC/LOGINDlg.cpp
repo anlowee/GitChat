@@ -93,6 +93,8 @@ void CLOGINDlg::OnBnClickedGetin()
 					Thread thread;
 					thread.Start(&recvThread,nullptr);
 
+					MyGlobalData::aIRCClient.SendIRC("JOIN #" + MyGlobalData::NowChannel);
+
 					MyGlobalData::newChatDlg.DoModal();
 				}
 				else
