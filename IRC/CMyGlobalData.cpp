@@ -14,3 +14,4 @@ MyGlobalData::~MyGlobalData()
 CString MyGlobalData::g_strUsername = NULL;
 IRCClient MyGlobalData::aIRCClient;
 CCHATDlg MyGlobalData::newChatDlg;
+std::string MyGlobalData::NowChannel = "English";

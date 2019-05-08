@@ -14,6 +14,8 @@ public:
 	static IRCClient aIRCClient;
 	static CCHATDlg newChatDlg;
 
+	static std::string NowChannel;
+
 	//static CString (CCHATDlg::*CCHATDlg_AddRecord)(CString, CString);
 };
 
