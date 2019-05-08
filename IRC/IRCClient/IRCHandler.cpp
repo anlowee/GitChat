@@ -19,6 +19,8 @@
 
 #include "../MyGlobalData.h"
 
+#include "../CHATDlg.h"
+
 IRCCommandHandler ircCommandTable[NUM_IRC_CMDS] =
 {
     { "PRIVMSG",            &IRCClient::HandlePrivMsg                   },
@@ -86,9 +88,20 @@ void IRCClient::HandlePrivMsg(IRCMessage message)
     }
 
     if (to[0] == '#')
-        std::cout << "From " + message.prefix.nick << " @ " + to + ": " << text << std::endl;
-    else
-        std::cout << "From " + message.prefix.nick << ": " << text << std::endl;
+	{
+		std::string strUsername = "From " + message.prefix.nick + " @" + to + ": ";
+		std::string strMessageInput = text + "\n";
+		MyGlobalData::newChatDlg.AddRecord(strUsername, strMessageInput);
+	}
+
+        //std::cout << "From " + message.prefix.nick << " @ " + to + ": " << text << std::endl;
+	else
+	{
+		std::string strUsername = "From " + message.prefix.nick + ": ";
+		std::string strMessageInput = text + "\n";
+		MyGlobalData::newChatDlg.AddRecord(strUsername, strMessageInput);
+	}
+        //std::cout << "From " + message.prefix.nick << ": " << text << std::endl;
 }
 
 void IRCClient::HandleNotice(IRCMessage message)
@@ -104,11 +117,15 @@ void IRCClient::HandleNotice(IRCMessage message)
         text = text.substr(1, text.size() - 2);
         if (text.find(" ") == std::string::npos)
         {
-            std::cout << "[Invalid " << text << " reply from " << from << "]" << std::endl;
+			std::string tempMessage = "[Invalid " + text + "reply from " + from + "]" + "\n";
+			MyGlobalData::newChatDlg.AddRecord("Server: ", tempMessage);
+			//std::cout << "[Invalid " << text << " reply from " << from << "]" << std::endl;
             return;
         }
         std::string ctcp = text.substr(0, text.find(" "));
-        std::cout << "[" << from << " " << ctcp << " reply]: " << text.substr(text.find(" ") + 1) << std::endl;
+		std::string tempMessage = "[" + from + " " + ctcp + " reply]: " + text.substr(text.find(" ") + 1) + "\n";
+		MyGlobalData::newChatDlg.AddRecord("Server: ", tempMessage);
+        //std::cout << "[" << from << " " << ctcp << " reply]: " << text.substr(text.find(" ") + 1) << std::endl;
     }
     else
         std::cout << "-" << from << "- " << text << std::endl;
@@ -118,13 +135,17 @@ void IRCClient::HandleChannelJoinPart(IRCMessage message)
 {
     std::string channel = message.parameters.at(0);
     std::string action = message.command == "JOIN" ? "joins" : "leaves";
-    std::cout << message.prefix.nick << " " << action << " " << channel << std::endl;
+	std::string tempMessage = message.prefix.nick + " " + action + " " + channel + "\n";
+	MyGlobalData::newChatDlg.AddRecord("Server: ", tempMessage);
+    //std::cout << message.prefix.nick << " " << action << " " << channel << std::endl;
 }
 
 void IRCClient::HandleUserNickChange(IRCMessage message)
 {
     std::string newNick = message.parameters.at(0);
-    std::cout << message.prefix.nick << " changed his nick to " << newNick << std::endl;
+	std::string tempMessage = message.prefix.nick + " changed his nick to " + newNick + "\n";
+	MyGlobalData::newChatDlg.AddRecord("Server: ", tempMessage);
+   //std::cout << message.prefix.nick << " changed his nick to " << newNick << std::endl;
 }
 
 void IRCClient::HandleUserQuit(IRCMessage message)
@@ -138,16 +159,22 @@ void IRCClient::HandleChannelNamesList(IRCMessage message)
 	try {
 		std::string channel = message.parameters.at(2);
 		std::string nicks = message.parameters.at(3);
-		std::cout << "People on " << channel << ":" << std::endl << nicks << std::endl;
+		std::string tempMessage = "People on " + channel + ":" + "\n" + nicks + "\n";
+		MyGlobalData::newChatDlg.AddRecord("Server: ", tempMessage);
+		//std::cout << "People on " << channel << ":" << std::endl << nicks << std::endl;
 	}
 	catch (...){
-		std::cout << "?????";
+		std::string tempMessage = "?????";
+		MyGlobalData::newChatDlg.AddRecord("Server: ", tempMessage);
+		//std::cout << "?????";
 	}
 }
 
 void IRCClient::HandleNicknameInUse(IRCMessage message)
 {
-    std::cout << message.parameters.at(1) << " " << message.parameters.at(2) << std::endl;
+	std::string tempMessage = message.parameters.at(1) + " " + message.parameters.at(2) + "\n";
+	MyGlobalData::newChatDlg.AddRecord("Server: ", tempMessage);
+    //std::cout << message.parameters.at(1) << " " << message.parameters.at(2) << std::endl;
 }
 
 void IRCClient::HandleServerMessage(IRCMessage message)
@@ -163,6 +190,6 @@ void IRCClient::HandleServerMessage(IRCMessage message)
     for (; itr != message.parameters.end(); ++itr)
         MSG+= *itr ;
     //std::cout << std::endl;
-	MyGlobalData::newChatDlg.AddRecord("Server", MSG);
+	MyGlobalData::newChatDlg.AddRecord("Server: ", MSG);
 	
 }

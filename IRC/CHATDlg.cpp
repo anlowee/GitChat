@@ -61,6 +61,7 @@ void CCHATDlg::OnBnClickedSend()
 
 
 //Using do process the record
+
 CString CCHATDlg::AddRecord(CString strUsername, CString strMessageInput)
 {
 	// TODO: Add your implementation code here.
@@ -74,6 +75,7 @@ CString CCHATDlg::AddRecord(CString strUsername, CString strMessageInput)
 
 	return strMessageOutput;
 }
+
 
 std::string CCHATDlg::AddRecord(std::string strUsername, std::string strMessageInput)
 {

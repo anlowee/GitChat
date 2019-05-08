@@ -23,7 +23,7 @@ protected:
 public:
 	afx_msg void OnBnClickedSend();
 	CString AddRecord(CString, CString);
-	std::string AddRecord(std::string strUsername, std::string  strMessageInput);
+    std::string AddRecord(std::string strUsername, std::string  strMessageInput);
 	// Using to indicate new records
 	void IndicateRecord(CString);
 };
