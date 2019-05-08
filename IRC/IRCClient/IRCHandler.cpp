@@ -118,13 +118,13 @@ void IRCClient::HandleNotice(IRCMessage message)
         if (text.find(" ") == std::string::npos)
         {
 			std::string tempMessage = "[Invalid " + text + "reply from " + from + "]" + "\n";
-			MyGlobalData::newChatDlg.AddRecord("Server: ", tempMessage);
+			MyGlobalData::newChatDlg.AddRecord("Server ", tempMessage);
 			//std::cout << "[Invalid " << text << " reply from " << from << "]" << std::endl;
             return;
         }
         std::string ctcp = text.substr(0, text.find(" "));
 		std::string tempMessage = "[" + from + " " + ctcp + " reply]: " + text.substr(text.find(" ") + 1) + "\n";
-		MyGlobalData::newChatDlg.AddRecord("Server: ", tempMessage);
+		MyGlobalData::newChatDlg.AddRecord("Server ", tempMessage);
         //std::cout << "[" << from << " " << ctcp << " reply]: " << text.substr(text.find(" ") + 1) << std::endl;
     }
     else
@@ -136,7 +136,7 @@ void IRCClient::HandleChannelJoinPart(IRCMessage message)
     std::string channel = message.parameters.at(0);
     std::string action = message.command == "JOIN" ? "joins" : "leaves";
 	std::string tempMessage = message.prefix.nick + " " + action + " " + channel + "\n";
-	MyGlobalData::newChatDlg.AddRecord("Server: ", tempMessage);
+	MyGlobalData::newChatDlg.AddRecord("Server ", tempMessage);
     //std::cout << message.prefix.nick << " " << action << " " << channel << std::endl;
 }
 
@@ -144,7 +144,7 @@ void IRCClient::HandleUserNickChange(IRCMessage message)
 {
     std::string newNick = message.parameters.at(0);
 	std::string tempMessage = message.prefix.nick + " changed his nick to " + newNick + "\n";
-	MyGlobalData::newChatDlg.AddRecord("Server: ", tempMessage);
+	MyGlobalData::newChatDlg.AddRecord("Server ", tempMessage);
    //std::cout << message.prefix.nick << " changed his nick to " << newNick << std::endl;
 }
 
@@ -160,12 +160,12 @@ void IRCClient::HandleChannelNamesList(IRCMessage message)
 		std::string channel = message.parameters.at(2);
 		std::string nicks = message.parameters.at(3);
 		std::string tempMessage = "People on " + channel + ":" + "\n" + nicks + "\n";
-		MyGlobalData::newChatDlg.AddRecord("Server: ", tempMessage);
+		MyGlobalData::newChatDlg.AddRecord("Server ", tempMessage);
 		//std::cout << "People on " << channel << ":" << std::endl << nicks << std::endl;
 	}
 	catch (...){
 		std::string tempMessage = "?????";
-		MyGlobalData::newChatDlg.AddRecord("Server: ", tempMessage);
+		MyGlobalData::newChatDlg.AddRecord("Server ", tempMessage);
 		//std::cout << "?????";
 	}
 }
@@ -173,7 +173,7 @@ void IRCClient::HandleChannelNamesList(IRCMessage message)
 void IRCClient::HandleNicknameInUse(IRCMessage message)
 {
 	std::string tempMessage = message.parameters.at(1) + " " + message.parameters.at(2) + "\n";
-	MyGlobalData::newChatDlg.AddRecord("Server: ", tempMessage);
+	MyGlobalData::newChatDlg.AddRecord("Server ", tempMessage);
     //std::cout << message.parameters.at(1) << " " << message.parameters.at(2) << std::endl;
 }
 
@@ -190,6 +190,6 @@ void IRCClient::HandleServerMessage(IRCMessage message)
     for (; itr != message.parameters.end(); ++itr)
         MSG+= *itr ;
     //std::cout << std::endl;
-	MyGlobalData::newChatDlg.AddRecord("Server: ", MSG);
+	MyGlobalData::newChatDlg.AddRecord("Server ", MSG);
 	
 }
