@@ -184,6 +184,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CHATDlg.h" />
+    <ClInclude Include="ConsoleCommandHandler.h" />
     <ClInclude Include="IRC.h" />
     <ClInclude Include="IRCClient\IRCClient.h" />
     <ClInclude Include="IRCClient\IRCHandler.h" />
@@ -200,6 +201,7 @@
   <ItemGroup>
     <ClCompile Include="CHATDlg.cpp" />
     <ClCompile Include="CMyGlobalData.cpp" />
+    <ClCompile Include="ConsoleCommandHandler.cpp" />
     <ClCompile Include="IRC.cpp" />
     <ClCompile Include="IRCClient\IRCClient.cpp" />
     <ClCompile Include="IRCClient\IRCHandler.cpp" />

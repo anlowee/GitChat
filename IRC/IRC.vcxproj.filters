@@ -57,6 +57,9 @@
     <ClInclude Include="IRCClient\stdafx.h">
       <Filter>Source Files\IRCClient</Filter>
     </ClInclude>
+    <ClInclude Include="ConsoleCommandHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IRC.cpp">
@@ -88,6 +91,9 @@
     </ClCompile>
     <ClCompile Include="IRCClient\Thread.cpp">
       <Filter>Source Files\IRCClient</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleCommandHandler.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,7 @@
 #include "IRCClient/IRCClient.h"
 
 #include "CHATDlg.h"
+#include <algorithm>
 
 class MyGlobalData
 {
@@ -16,6 +17,12 @@ public:
 
 	static std::string NowChannel;
 
-	//static CString (CCHATDlg::*CCHATDlg_AddRecord)(CString, CString);
-};
 
+	void static msgCommand(std::string arguments, IRCClient* client);
+	void static joinCommand(std::string channel, IRCClient* client);
+	void static partCommand(std::string channel, IRCClient* client);
+	void static ctcpCommand(std::string arguments, IRCClient* client);
+
+	bool static StringToWString(const std::string& str, std::wstring& wstr);
+	bool static WStringToString(const std::wstring& wstr, std::string& str);
+};
